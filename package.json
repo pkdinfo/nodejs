@@ -1,0 +1,21 @@
+{
+  "name": "nodeexample",
+  "version": "1.0.0",
+  "description": "a node js tutorial",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "(https://github.com/pkdinfo/nodejs.git)"
+  },
+  "keywords": [
+    "nodejs"
+  ],
+  "author": "pkdinfo",
+  "license": "ISC",
+  "dependencies": {
+    "color": "^4.2.3"
+  }
+}
