@@ -11,7 +11,10 @@ for(i=0; i<5; i++)
 
 
 
-
+fs.readdir(dirPath, (err,files)=>{
+    files.forEach( (item)=>{ console.log("file name is ", item);})
+   
+})
 
 
 
