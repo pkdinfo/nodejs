@@ -1,34 +1,50 @@
+const {MongoClient} = require('mongodb');
+const url = 'mongodb://localhost:27017';	
+const dataBaseName = 'ecommerce';
+const client = new MongoClient(url);
+ async function getData()
+ {
+    let result = await client.connect() 
+    db =  result.db(dataBaseName);
+    let collection =  db.collection('cloths');
+    let response  = await (collection.find({}).toArray());
+    console.log(response);
+ }
+
+getData();
+
+
 // ================== MiddleWare===========================
 
-const express = require('express');
-const app = express();
-const reqFilter = (req, resp, next) => {
-	if (!req.query.age) {
-		//console.log('reqFilter');
-		resp.send('please provide your age');
-	} else if (req.query.age < 18) {
-		resp.send('you are under age');
-	}
-	{
-		next();
-	}
-};
+// const express = require('express');
+// const app = express();
+// const reqFilter = (req, resp, next) => {
+// 	if (!req.query.age) {
+// 		//console.log('reqFilter');
+// 		resp.send('please provide your age');
+// 	} else if (req.query.age < 18) {
+// 		resp.send('you are under age');
+// 	}
+// 	{
+// 		next();
+// 	}
+// };
 
-//app.use(reqFilter); // Application Middleware
+// //app.use(reqFilter); // Application Middleware
 
-app.get('/', (_, resp) => {
-	resp.send(`Home page is here `);
-});
+// app.get('/', (_, resp) => {
+// 	resp.send(`Home page is here `);
+// });
 
-app.get('/users', reqFilter, (_, resp) => {
-	resp.send(`welcome Users`);
-});
+// app.get('/users', reqFilter, (_, resp) => {
+// 	resp.send(`welcome Users`);
+// });
 
-app.get('/about', (_, resp) => {
-	resp.send(`about us`);
-});
+// app.get('/about', (_, resp) => {
+// 	resp.send(`about us`);
+// });
 
-app.listen(7000);
+// app.listen(7000);
 
 //======================================Page Creation & Accesss=============
 // const express = require('express');
