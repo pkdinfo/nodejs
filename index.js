@@ -1,18 +1,22 @@
-const {MongoClient} = require('mongodb');
-const url = 'mongodb://localhost:27017';	
+const { MongoClient } = require('mongodb');
+const url = 'mongodb://localhost:27017';
 const dataBaseName = 'ecommerce';
 const client = new MongoClient(url);
- async function getData()
- {
-    let result = await client.connect() 
-    db =  result.db(dataBaseName);
-    let collection =  db.collection('cloths');
-    let response  = await (collection.find({}).toArray());
-    console.log(response);
- }
 
-getData();
 
+async function dbConnect() {
+	let result = await client.connect();
+	db = result.db(dataBaseName);
+	return db.collection('cloths');
+	//let response = await collection.find({ }).toArray();
+	//console.log(response);
+}
+
+dbConnect().then((resp)=>{
+    resp.find().toArray().then((data)=>{
+        console.log(data);
+    })
+});
 
 // ================== MiddleWare===========================
 
