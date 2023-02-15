@@ -1,9 +1,22 @@
 const express = require('express');
+const { find } = require('./product');
 require('./config');
 const Product = require('./product');
 
 const app = express();
 app.use(express.json()); // converts data feom request to json
+
+app.get('/search/key', async (req, resp) => {
+	
+	console.log(req.params.key);
+	let data = await Product.find({
+		"$or": [ { "color": { $regex: req.params.key } } ]
+	});
+	resp.send(data);
+});
+
+app.listen(9000);
+
 // app.post("/create", async (req, resp) => {
 // 	let data = new Product(req.body);
 // 	let result = await data.save();
@@ -25,16 +38,13 @@ app.use(express.json()); // converts data feom request to json
 
 // });
 
-app.put('/update/:_id', async (req, resp) => {
-	console.log(req.params);
-	let data = await Product.updateOne(req.params, { $set: req.body });
-	resp.send(data);
-});
+// app.put('/update/:_id', async (req, resp) => {
+// 	console.log(req.params);
+// 	let data = await Product.updateOne(req.params, { $set: req.body });
+// 	resp.send(data);
+// });
 
-app.listen(6000);
-
-
-
+// app.listen(6000);
 
 // const mongoose = require('mongoose');
 // const ProductSchema = new mongoose.Schema({
