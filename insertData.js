@@ -6,8 +6,6 @@ const insertData=async ()=>{
       [
           {name: 'pravin'},
           {name: 'preeti'},
-       
-
       ]
   )
   if(result.acknowledged)
